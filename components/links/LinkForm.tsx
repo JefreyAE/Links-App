@@ -5,10 +5,20 @@ import { LinkServiceInterface } from "@/types/linkservice"
 import { Database } from "@/types/supabase"
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
 import { useState } from "react"
-
 interface ListFormProps{
   list_id: number | string
   reloadList: ()=>void
+}
+
+
+const isValidURL = async (url:any) => {
+
+  // Regular expression pattern to match a URL (excluding localhost)
+  const urlPattern = /^(https?:\/\/)?((?!localhost)[\w.-]+)\.([a-z]{2,})(:\d{1,5})?(\/.*)?$/i;
+  let urlRegex = new RegExp(urlPattern);
+
+  // Test the URL against both URL pattern and disallowed domain pattern
+  return urlRegex.test(url);
 }
 
 export default function LinkForm({list_id, reloadList}:ListFormProps){
@@ -18,11 +28,15 @@ export default function LinkForm({list_id, reloadList}:ListFormProps){
     const [description, setDescription] = useState<string>()
     const [message, setMessage] = useState<string>()
     const [isLoading, setIsLoading] = useState(false)
+    const [isValid, setIsValid] = useState(false)
 
-    const handleSubmit = (e:any)=>{
+    const handleSubmit = async (e:any)=>{
       e.preventDefault()
       setIsLoading(true)
-      list_id && url && description && linkService && linkService.createLink(url, description, list_id)
+
+      setIsValid(await isValidURL(url))
+
+      isValid && list_id && url && description && linkService && linkService.createLink(url, description, list_id)
         .then(()=>{
           setIsLoading(false)
           setMessage('Created successfully')
@@ -32,7 +46,12 @@ export default function LinkForm({list_id, reloadList}:ListFormProps){
           setIsLoading(false)
           error.message && setMessage(error.message)
         })
+      if(!isValid){
+        setMessage('Invalid link')
+        setIsLoading(false)
+      }
     }
+
     return (
         <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2"> 
           <form className="animate-in flex-1 flex flex-row w-full justify-center gap-2 text-foreground"

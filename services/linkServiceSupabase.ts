@@ -27,14 +27,32 @@ export class LinkServiceSupabase implements LinkServiceInterface {
                 .single();
 
             if (error) {
-                console.error('Error al crear el link', error.message);
-                throw new Error('Error al crear el link');
+                console.error('Error creating the link', error.message);
+                throw new Error('Error creating the link');
             }
 
             return link;
         } catch (error:any) {
-            console.error('Error al crear el link', error.message);
-            throw new Error('Error al crear el link');
+            console.error('Error creating the link', error.message);
+            throw new Error('Error creating the link');
+        }
+    }
+
+    async deleteLink(link_id: any): Promise<any> {
+        try {
+            const { data: link, error } = await this.supabase.from('links')
+                .delete()
+                .eq('id', link_id)
+
+            if (error) {
+                console.error('Error deleting link', error.message);
+                throw new Error('Error deleting link');
+            }
+
+            return link;
+        } catch (error:any) {
+            console.error('Error deleting link', error.message);
+            throw new Error('Error deleting link');
         }
     }
 }

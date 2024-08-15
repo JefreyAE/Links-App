@@ -40,3 +40,4 @@ export const redirectToHomeIfAuthenticated = async () => {
 
     await redirectToHome()
 };
+

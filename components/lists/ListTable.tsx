@@ -12,15 +12,11 @@ interface ListTableProps{
 
 export default function ListTable({ lists, reloadList }: ListTableProps) {
     const listService: ListServiceInterface = new ListServiceSupabase(createClientComponentClient<Database>())
-    const deleteList = (id:any) =>{
-        
+    const deleteList = (id:any) =>{  
         id && listService.deleteList(id)
             .then(()=>{
-                //setIsLoading(false)
-                //setMessage('Created successfully')
                 reloadList()
                 console.log(id);
-        
             })
     }
     return (
@@ -42,8 +38,8 @@ export default function ListTable({ lists, reloadList }: ListTableProps) {
                                                                 {list.name}
                                                             </Link>
                                                         </td>
-                                                        <td className="whitespace-nowrap px-6 py-4 font-medium text-center">
-                                                            <button onClick={e => deleteList(list.id)}>Delete</button>
+                                                        <td className="whitespace-nowrap px-6 py-4 font-medium text-center ">
+                                                            <button className='bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded' onClick={e => deleteList(list.id)}>Delete</button>
                                                         </td>
                                                     </tr>
                                                 </>

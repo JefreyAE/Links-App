@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react';
 export default function Index({ params }: any) {
 
     const linksService: LinkServiceInterface = new LinkServiceSupabase(createClientComponentClient<Database>())
-    const [links, setLinks] = useState([])
+    const [links, setLinks] = useState<[]>([])
     const [reloadListState, setReloadListState] = useState<boolean>(false);
 
     useEffect(() => {
@@ -35,7 +35,7 @@ export default function Index({ params }: any) {
                     <div className="w-full p-[1px] bg-gradient-to-r from-transparent via-foreground/10 to-transparent my-4" />
                 </div>
                 <main className="flex-1 flex flex-col gap-6 ">
-                    <LinksTable links={links} />
+                    <LinksTable links={links} reloadList={reloadList}/>
                 </main>
             </div>
         </div>
