@@ -3,7 +3,6 @@ import IsLoading from "@/app/login/isLoading"
 import { ListServiceSupabase } from "@/services/listServiceSupabase"
 import { ListServiceInterface } from "@/types/listService"
 import { Database } from "@/types/supabase"
-import { UserServiceInterface } from "@/types/userService"
 import { User, createClientComponentClient } from "@supabase/auth-helpers-nextjs"
 import { useState } from "react"
 

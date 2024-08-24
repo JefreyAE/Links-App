@@ -15,15 +15,12 @@ export default function LinksTable({ links, reloadList }: LinksTableProps) {
     const deleteLink = (id:any) =>{  
         id && linkService.deleteLink(id)
             .then(()=>{
-                //setIsLoading(false)
-                //setMessage('Created successfully')
                 reloadList()
-                console.log(id);
             })
     }
     return (
         <>
-            <div className="flex flex-col flex-wrap w-full mt-10 place-items-center">
+            <div className="flex flex-col flex-wrap w-4/5 mt-10 place-items-center self-center">
                 <h2 className="font-bold text-4xl mb-4 ">List of links</h2>
                 <div className="flex flex-col w-full justify-self-center">
                     <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">

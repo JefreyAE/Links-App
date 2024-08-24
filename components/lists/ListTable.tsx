@@ -21,9 +21,9 @@ export default function ListTable({ lists, reloadList }: ListTableProps) {
     }
     return (
         <>
-            <div className="flex flex-col flex-wrap w-full place-items-center">
+            <div className="flex flex-col flex-wrap w-4/5 mt-10 place-items-center self-center">
                 <h2 className="font-bold text-4xl mb-4 ">My lists</h2>
-                <div className="flex flex-col w-2/4 justify-self-center">
+                <div className="flex flex-col w-full justify-self-center">
                     <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                             <div className="overflow-hidden">

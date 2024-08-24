@@ -25,7 +25,7 @@ export default function Index({ params }: any) {
     }
 
     return (
-        <div className="flex-1 w-full flex flex-col gap-10 items-center">
+        <div className="flex-1 w-full flex flex-col gap-10 items-center mt-4">
             <div className="animate-in flex-1 flex flex-col gap-10 opacity-0 w-full px-3">
                 <div className="flex flex-col gap-10 items-center">
                     <p className="text-3xl lg:text-4xl !leading-tight mx-auto max-w-xl text-center">
